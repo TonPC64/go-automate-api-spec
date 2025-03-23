@@ -11,4 +11,5 @@ build:
 	go build -o bin/go-automate-api-spec
 
 swag:
-	
+	$(MAKE) -C cmd/echo swag
+	$(MAKE) -C cmd/gin swag

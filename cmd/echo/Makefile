@@ -1,3 +1,3 @@
 swag:
 	swag fmt
-	swag i -o ./docs --outputTypes yaml --markdownFiles ./docs-markdown
+	swag i -o ./../../apispec/echo --outputTypes yaml --markdownFiles ./docs-markdown
