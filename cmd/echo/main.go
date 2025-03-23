@@ -6,6 +6,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+//go:generate swag i -o ./../../apispec/echo --outputTypes yaml --markdownFiles ./docs-markdown
+
 //	@title			Swagger Example API echo
 //	@version		1.0
 //	@description	This is a sample server celler server.

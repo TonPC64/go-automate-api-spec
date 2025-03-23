@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+//go:generate swag i -o ./../../apispec/gin --outputTypes yaml --markdownFiles ./docs-markdown
+
 //	@title			Swagger Example API gin
 //	@version		1.0
 //	@description	This is a sample server celler server.
