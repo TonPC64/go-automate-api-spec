@@ -1,0 +1,85 @@
+name: Go Generate and Build Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Generate Swagger and Build Docs
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Cache Go modules
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: '1.23'
+    
+    - name: Install dependencies
+      run: go mod tidy
+
+    - name: Install swag
+      run: go install github.com/swaggo/swag/cmd/swag@latest
+
+    - name: Run go generate
+      run: go generate -run="swag" ./...
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('document/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '22'
+
+    - name: Install Node.js documentation dependencies
+      run: cd document && npm ci
+
+    - name: Build documentation
+      env:
+        DEPLOY_BASE_URL: /${{ github.event.repository.name }}
+      run: cd document && npm run build
+
+    - name: Upload Build Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: document/build
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
