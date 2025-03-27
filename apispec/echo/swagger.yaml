@@ -1,4 +1,10 @@
 basePath: /api/v1
+definitions:
+  main.response:
+    properties:
+      message:
+        type: string
+    type: object
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
@@ -27,9 +33,7 @@ paths:
         "200":
           description: OK
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/main.response'
         "500":
           description: Internal Server Error
           schema:
