@@ -1,8 +1,6 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/labstack/echo/v4"
 )
 
@@ -20,7 +18,7 @@ import (
 //	@license.name	Apache 2.0
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
-//	@host		localhost:8080
+//	@host		localhost:8082
 //	@BasePath	/api/v1
 
 //	@securityDefinitions.basic	BasicAuth
@@ -29,13 +27,7 @@ import (
 // @externalDocs.url			https://swagger.io/resources/open-api/
 func main() {
 	e := echo.New()
-	e.GET("/ping", func(c echo.Context) error {
-		return c.JSON(http.StatusOK, map[string]string{
-			"message": "pong",
-		})
-	})
-
-	setupRoutes(e) // Add this line to setup routes
+	setupRoutes(e)
 
 	e.Start(":8082")
 }

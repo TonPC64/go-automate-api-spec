@@ -18,7 +18,7 @@ import (
 //	@license.name	Apache 2.0
 //	@license.url	http://www.apache.org/licenses/LICENSE-2.0.html
 
-//	@host		localhost:8080
+//	@host		localhost:8081
 //	@BasePath	/api/v1
 
 //	@securityDefinitions.basic	BasicAuth
@@ -27,13 +27,7 @@ import (
 // @externalDocs.url			https://swagger.io/resources/open-api/
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-
-	setupRoutes(r) // Add this line to setup routes
+	setupRoutes(r)
 
 	r.Run(":8081")
 }

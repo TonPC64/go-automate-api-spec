@@ -2,7 +2,7 @@ basePath: /api/v1
 externalDocs:
   description: OpenAPI
   url: https://swagger.io/resources/open-api/
-host: localhost:8080
+host: localhost:8082
 info:
   contact:
     email: support@swagger.io
@@ -15,7 +15,96 @@ info:
   termsOfService: http://swagger.io/terms/
   title: Swagger Example API echo
   version: "1.0"
-paths: {}
+paths:
+  /examples:
+    delete:
+      consumes:
+      - application/json
+      description: Deletes an example resource
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Delete an example
+      tags:
+      - examples
+    get:
+      consumes:
+      - application/json
+      description: Returns an example resource
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Get an example
+      tags:
+      - examples
+    post:
+      consumes:
+      - application/json
+      description: Creates a new example resource
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create an example
+      tags:
+      - examples
+    put:
+      consumes:
+      - application/json
+      description: Updates an example resource
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update an example
+      tags:
+      - examples
 securityDefinitions:
   BasicAuth:
     type: basic

@@ -4,6 +4,8 @@
 
 ![Go_ API Spec Automation](https://github.com/user-attachments/assets/795c3937-47c7-4e09-b1ff-4c0d852c50c8)
 
+[Slide](https://docs.google.com/presentation/d/e/2PACX-1vRBu7Bg4NUbecP5hbtyzLNzQi2JA4YiE6RzcJczFL3jcqDjRbQfFqQugAhwKpLQ7Rj5cgcko4YWOtAC/pub?start=false&loop=false&delayms=3000)
+
 ## Setup and Usage
 
 Follow these steps to set up and generate the API spec:

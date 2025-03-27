@@ -5,4 +5,6 @@ repos:
         name: Generate API Spec
         entry: make generate.api-spec
         language: system
-        stages: [commit]
+        fail_fast: true
+        pass_filenames: false
+        stages: [pre-commit]

@@ -5,6 +5,7 @@ go 1.23.2
 require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/gofiber/fiber/v2 v2.52.6
+	github.com/gorilla/mux v1.8.1
 	github.com/labstack/echo/v4 v4.13.3
 )
 

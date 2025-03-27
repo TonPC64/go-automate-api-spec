@@ -1,24 +1,31 @@
 package main
 
 import (
-	"encoding/json"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func setupRoutes() {
-	http.HandleFunc("/example", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		switch r.Method {
-		case http.MethodGet:
-			json.NewEncoder(w).Encode(map[string]string{"message": "GET example"})
-		case http.MethodPost:
-			json.NewEncoder(w).Encode(map[string]string{"message": "POST example"})
-		case http.MethodPut:
-			json.NewEncoder(w).Encode(map[string]string{"message": "PUT example"})
-		case http.MethodDelete:
-			json.NewEncoder(w).Encode(map[string]string{"message": "DELETE example"})
-		default:
-			w.WriteHeader(http.StatusMethodNotAllowed)
-		}
-	})
+	router := mux.NewRouter()
+	router.HandleFunc("/example", exampleHandler).
+		Methods(http.MethodGet, http.MethodPost, http.MethodPut, http.MethodDelete)
+
+	http.Handle("/", router)
+}
+
+func exampleHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	switch r.Method {
+	case http.MethodGet:
+		handleGetExample(w, r)
+	case http.MethodPost:
+		handlePostExample(w, r)
+	case http.MethodPut:
+		handlePutExample(w, r)
+	case http.MethodDelete:
+		handleDeleteExample(w, r)
+	default:
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
 }
