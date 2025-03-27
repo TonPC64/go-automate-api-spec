@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: generate-api-spec
+        name: Generate API Spec
+        entry: make generate.api-spec
+        language: system
+        stages: [commit]

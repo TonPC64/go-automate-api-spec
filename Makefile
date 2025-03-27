@@ -7,7 +7,8 @@ install:
 test:
 	go test ./...
 
-swag:
+generate.api-spec:
+	@echo "Go generate api specs..."
 	go generate -run="swag" ./...
 
 dev.document:

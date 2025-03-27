@@ -74,6 +74,14 @@ const config: Config = {
             id: 'gin',
             spec: '../apispec/gin/swagger.yaml',
           },
+          {
+            id: 'fiber',
+            spec: '../apispec/fiber/swagger.yaml',
+          },
+          {
+            id: 'http',
+            spec: '../apispec/http/swagger.yaml',
+          }
         ],
       },
     ],
