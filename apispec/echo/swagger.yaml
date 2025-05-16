@@ -1,5 +1,17 @@
 basePath: /api/v1
 definitions:
+  main.ErrorResponse:
+    properties:
+      code:
+        type: integer
+    type: object
+  main.Response:
+    properties:
+      message:
+        type: string
+      status:
+        type: integer
+    type: object
   main.response:
     properties:
       message:
@@ -46,25 +58,28 @@ paths:
     get:
       consumes:
       - application/json
-      description: Returns an example resource
+      description: |-
+        ### cURL Example
+
+        ```bash
+        curl -X GET "http://localhost/api/v1/example" -H "Accept: application/json"
+        ```
+
+        Returns an example resource
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/main.Response'
         "500":
           description: Internal Server Error
           schema:
-            additionalProperties:
-              type: string
-            type: object
+            $ref: '#/definitions/main.ErrorResponse'
       summary: Get an example
       tags:
-      - Internal
+      - internal
     post:
       consumes:
       - application/json
@@ -86,7 +101,7 @@ paths:
             type: object
       summary: Create an example
       tags:
-      - examples
+      - internal
     put:
       consumes:
       - application/json
@@ -108,7 +123,7 @@ paths:
             type: object
       summary: Update an example
       tags:
-      - examples
+      - internal
 securityDefinitions:
   BasicAuth:
     type: basic

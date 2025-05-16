@@ -10,7 +10,7 @@ import (
 //
 //	@Summary		Create an example
 //	@Description	Creates a new example resource
-//	@Tags			examples
+//	@Tags			internal
 //	@Accept			json
 //	@Produce		json
 //	@Success		201	{object}	map[string]string
